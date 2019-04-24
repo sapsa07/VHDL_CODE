@@ -1,0 +1,1543 @@
+MUX(4 :1)
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity mux_4to1 is
+ port(
+
+     A,B,C,D : in STD_LOGIC;
+     S0,S1: in STD_LOGIC;
+     Z: out STD_LOGIC
+  );
+end mux_4to1;
+
+architecture bhv of mux_4to1 is
+begin
+process (A,B,C,D,S0,S1) is
+begin
+  if (S0 ='0' and S1 = '0') then
+      Z <= A;
+  elsif (S0 ='1' and S1 = '0') then
+      Z <= B;
+  elsif (S0 ='0' and S1 = '1') then
+      Z <= C;
+  else
+      Z <= D;
+  end if;
+
+end process;
+end bhv;
+------------------------------------------------------------------------------------------------------------------------------------------
+MUX(8 :1)
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity mux_8to1 is
+ port(
+
+     A,B,C,D,E,F,G,H : in STD_LOGIC;
+     S0,S1,eN: in STD_LOGIC;
+     Z: out STD_LOGIC
+  );
+end mux_8to1;
+
+architecture bhv of mux_8to1 is
+begin
+process (A,B,C,D,E,F,G,H,eN,S0,S1) is
+begin
+if eN='0' then
+  if (S0 ='0' and S1 = '0') then
+      Z <= A;
+  elsif (S0 ='1' and S1 = '0') then
+      Z <= B;
+  elsif (S0 ='0' and S1 = '1') then
+      Z <= C;
+  else
+      Z <= D;
+  end if;
+else
+  if (S0 ='0' and S1 = '0') then
+      Z <= E;
+  elsif (S0 ='1' and S1 = '0') then
+      Z <= F;
+  elsif (S0 ='0' and S1 = '1') then
+      Z <= G;
+  else
+      Z <= H;
+  end if;
+end if;
+
+end process;
+end bhv;
+------------------------------------------------------------------------------------------------------------------------------------------
+DMUX(4 :1)
+library IEEE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity demux_1to4 is
+ port(
+
+ F : in STD_LOGIC;
+ S0,S1: in STD_LOGIC;
+ A,B,C,D: out STD_LOGIC
+ );
+end demux_1to4;
+
+architecture bhv of demux_1to4 is
+begin
+process (F,S0,S1) is
+begin
+ if (S0 ='0' and S1 = '0') then
+ A <= F;
+ elsif (S0 ='1' and S1 = '0') then
+ B <= F;
+ elsif (S0 ='0' and S1 = '1') then
+ C <= F;
+ else
+ D <= F;
+ end if;
+
+end process;
+end bhv;
+------------------------------------------------------------------------------------------------------------------------------------------
+DMUX(8 :1)
+library IEEE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity demux_1to8 is
+ port(
+
+ z : in STD_LOGIC;
+ S0,S1,eN: in STD_LOGIC;
+ A,B,C,D,E,F,G,H: out STD_LOGIC
+ );
+end demux_1to8;
+
+architecture bhv of demux_1to8 is
+begin
+process (z,S0,S1, eN) is
+begin
+if(eN='0') then
+ if (S0 ='0' and S1 = '0') then
+ A <= z;
+ elsif (S0 ='1' and S1 = '0') then
+ B <= z;
+ elsif (S0 ='0' and S1 = '1') then
+ C <= z;
+ else
+ D <= z;
+ end if;
+else
+ if (S0 ='0' and S1 = '0') then
+ E <= z;
+ elsif (S0 ='1' and S1 = '0') then
+ F <= z;
+ elsif (S0 ='0' and S1 = '1') then
+ G <= z;
+ else
+ H <= z;
+ end if;
+end if;
+
+end process;
+end bhv;
+------------------------------------------------------------------------------------------------------------------------------------------
+DMUX(16 :1)
+library IEEE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity demux_1to16 is
+ port(
+
+ z : out STD_LOGIC;
+ S0,S1,S2,S3: out STD_LOGIC;
+ A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P: in STD_LOGIC
+ );
+end demux_1to16;
+
+architecture bhv of demux_1to16 is
+begin
+process (z,S0,S1,S2,S3) is
+begin
+if(S3='0') then
+if(S2='0') then
+ if (S0 ='0' and S1 = '0') then
+ A <= z;
+ elsif (S0 ='1' and S1 = '0') then
+ B <= z;
+ elsif (S0 ='0' and S1 = '1') then
+ C <= z;
+ else
+ D <= z;
+ end if;
+else
+ if (S0 ='0' and S1 = '0') then
+ E <= z;
+ elsif (S0 ='1' and S1 = '0') then
+ F <= z;
+ elsif (S0 ='0' and S1 = '1') then
+ G <= z;
+ else
+ H <= z;
+ end if;
+end if;
+else
+if(S2='0') then
+ if (S0 ='0' and S1 = '0') then
+ I <= z;
+ elsif (S0 ='1' and S1 = '0') then
+ J <= z;
+ elsif (S0 ='0' and S1 = '1') then
+ K <= z;
+ else
+ L <= z;
+ end if;
+else
+ if (S0 ='0' and S1 = '0') then
+ M <= z;
+ elsif (S0 ='1' and S1 = '0') then
+ N <= z;
+ elsif (S0 ='0' and S1 = '1') then
+ O <= z;
+ else
+ P <= z;
+ end if;
+end if;
+end if;
+end process;
+end bhv;
+
+------------------------------------------------------------------------------------------------------------------------------------------
+MUX(1 :16)
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity mux_16to1 is
+ port(
+
+     A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P : in STD_LOGIC;
+     S0,S1,S2,S3: in STD_LOGIC;
+     Z: out STD_LOGIC
+  );
+end mux_16to1;
+
+architecture bhv of mux_16to1 is
+begin
+process (A,B,C,D,E,F,G,H,S0,S1,S2,S3) is
+begin
+if S3='0' then
+if S2='0' then
+  if (S0 ='0' and S1 = '0') then
+      Z <= A;
+  elsif (S0 ='1' and S1 = '0') then
+      Z <= B;
+  elsif (S0 ='0' and S1 = '1') then
+      Z <= C;
+  else
+      Z <= D;
+  end if;
+else
+  if (S0 ='0' and S1 = '0') then
+      Z <= E;
+  elsif (S0 ='1' and S1 = '0') then
+      Z <= F;
+  elsif (S0 ='0' and S1 = '1') then
+      Z <= G;
+  else
+      Z <= H;
+  end if;
+end if;
+else
+  if S2='0' then
+  if (S0 ='0' and S1 = '0') then
+      Z <= I;
+  elsif (S0 ='1' and S1 = '0') then
+      Z <= J;
+  elsif (S0 ='0' and S1 = '1') then
+      Z <= K;
+  else
+      Z <= L;
+  end if;
+else
+  if (S0 ='0' and S1 = '0') then
+      Z <= M;
+  elsif (S0 ='1' and S1 = '0') then
+      Z <= N;
+  elsif (S0 ='0' and S1 = '1') then
+      Z <= O;
+  else
+      Z <= P;
+  end if;
+end if;
+end if;
+end process;
+end bhv;
+
+
+---------------------------------------
+
+----8 BIT ADDITION-----
+Code:
+library ieee;
+
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+    entity BitAdder is
+        generic(N: natural := 2);
+        port
+            (
+            X:in std_logic_vector(7 downto 0);
+            Y:in std_logic_vector(7 downto 0);
+            SUM: out std_logic_vector(7 downto 0);
+            CARRY: out std_logic
+            );
+        end BitAdder;
+        architecture Behavioral of BitAdder is
+            Signal result:std_logic_vector(8 downto 0);
+            begin
+                result<= ('0' & X)+('0' & Y);
+                SUM<= result(7 downto 0);
+                CARRY<=result(8);
+            end behavioral;
+    OUTPUT:
+
+2)8 bit Substraction
+(i)Simple
+library ieee;
+
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+    entity fs is
+        generic(n: natural :=2);
+        port
+            (
+            X: in std_logic_vector(7 downto 0);
+            Y: in std_logic_vector(7 downto 0);
+            difference: out std_logic_vector(7 downto 0);
+            borrow:out std_logic
+            );
+    end fs;
+
+    architecture data of fs is
+        signal result: std_logic_vector(8 downto 0);
+        begin
+            result <= ('0' & X)- ('0' &  Y);
+            difference<=result(7 downto 0);
+            borrow<=result(8);
+    end data;
+OUTPUT:
+
+
+(ii) using 2's complement
+library ieee;
+
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+    entity fs is
+        port
+            (
+            X: in std_logic_vector(7 downto 0);
+            Y: in std_logic_vector(7 downto 0);
+            difference: out std_logic_vector(7 downto 0);
+            borrow:out std_logic
+            );
+    end fs;
+
+    architecture bev of fs is
+        signal result: std_logic_vector(8 downto 0);
+
+                begin
+
+                result <= ('0' & X) + (not('0' & Y) + 1);
+
+              difference<=result(7 downto 0);
+
+            borrow<=result(8);
+
+    end bev;
+
+    --half adder--
+
+  library ieee;
+      use ieee.std_logic_1164.all;
+      entity ha is
+          port(
+               a,b: in bit;
+               s,c: out bit);
+          end ha;
+          architecture bhv of ha is begin
+          p1:process(a,b)
+    begin
+        if a & b ="00" then
+          s<= '0';
+          c<= '0';
+          elsif a&b="01" or a & b ="10" then
+          s<= '1';
+          c<= '0';
+          else
+           s<= '0';
+          c<= '1';
+      end if;
+  end process;
+      end bhv;
+
+  -- full adder--
+
+  library ieee;
+
+      use ieee.std_logic_1164.all;
+
+      entity fulladder1 is
+
+          port
+
+              (a, b , C : in bit;
+
+               s, ca : out bit
+              );
+
+          end fulladder1;
+
+          architecture behavioral of fulladder1 is
+
+                  begin
+
+                  p1: process(a,b,c)
+
+                  begin
+
+      if a & b & c ="000" then
+      s <= '0';
+      ca <= '0';
+
+      elsif a & b & c = "001" or a & b & c ="011" or a & b & c ="100" then
+      s <= '1';
+      ca <= '0';
+
+      elsif a & b & c = "111" then
+      s <= '1';
+      ca <= '1';
+
+      else
+          s <= '0';
+          ca <='1';
+
+  end if;
+
+  end process;
+
+  end behavioral;
+
+
+  code 1      :    alu  ( original)
+
+--library dec:
+library ieee;
+
+    use ieee.std_logic_1164.all;
+
+     use ieee.std_logic_unsigned.all;
+
+      use ieee.std_logic_arith.all;
+
+entity alu8bit is
+    port
+        (
+        a, b: in std_logic_vector(7 downto 0);  --input
+        op: in std_logic_vector(2 downto 0);  --operation
+        zero: out std_logic;  --flag bit to set or reset
+        f: out std_logic_vector(7 downto 0)); --output
+    end alu8bit;
+
+    --Architecture dec:
+
+    --behavioral is the arc name for the entity alu8bit:
+
+    architecture behavioral of alu8bit is
+        --begining the arc body
+        begin
+
+            --dec the process
+            process(op,a,b)
+                --temp variable dec-
+
+                variable temp: std_logic_vector(7 downto 0);
+                --begining the case statement
+                begin
+                    case op is
+                        when"000" =>
+                            temp :=a and b;
+                            when"001" =>
+                            temp :=a or b;
+                            when"010" =>
+                            temp :=a + b;
+                            when"100" =>
+                            temp :=a and b;
+                            when"101" =>
+                            temp :=a or b;
+                            when"110" =>
+                            temp := a-b;
+                            when"111" =>
+                            if a < b then
+                            temp :="11111111";
+                            else
+                            temp:= "00000000";
+                        end if;
+                        when others =>
+                            temp:= a - b;
+                        end case;
+                        --end of case block
+                        --start if block
+                        if temp="000000000" then
+                            zero<= '1'; --reset mode
+                            else
+                            zero<= '0'; --set mode
+                        end if;
+                        f <= temp; --transfering the o/p to the f channel
+                    end process;
+                end behavioral;
+
+
+---------------AND---------
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity andGate is
+   port( A, B : in std_logic;
+            F : out std_logic);
+end andGate;
+
+architecture func of andGate is
+begin
+  F <= A and B;
+end func;
+
+
+-------BCD ADDER---------
+
+library ieee;
+
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity bcd_adder is
+    port( a,b  : in  unsigned(3 downto 0);
+       carry_in : in std_logic;
+        sum  : out  unsigned(3 downto 0);
+        carry : out std_logic
+    );
+end bcd_adder;
+
+architecture arch of bcd_adder is
+
+begin
+
+process(a,b)
+variable sum_temp : unsigned(4 downto 0);
+begin
+    sum_temp := ('0' & a) + ('0' & b) + ("0000" & carry_in);
+    if(sum_temp > 9) then
+        carry <= '1';
+        sum <= resize((sum_temp + "00110"),4);
+    else
+        carry <= '0';
+        sum <= sum_temp(3 downto 0);
+    end if;
+end process;
+
+
+1)	 BINARY TO GREY:
+
+CODE:
+library ieee;
+
+    use ieee.std_logic_1164.all;
+    use ieee.std_logic_arith.all;
+    use ieee.std_logic_unsigned.all;
+
+    entity BG is
+
+        port( a: in std_logic_vector(3 downto 0);
+              b: out std_logic_vector(3 downto 0)
+            );
+
+        end BG;
+
+        architecture bhv of BG is
+            begin
+                process(a)
+                    begin
+                        b(0)<=a(0);
+                        b(1)<=a(0) xor a(1);
+                        b(2)<=a(2) xor a(1);
+                        b(3)<=a(3) xor a(2);
+                    end process;
+                end bhv;
+
+2)	GREY TO BINARY
+library ieee;
+use ieee.std_logic_1164.all;
+    use ieee.std_logic_arith.all;
+    use ieee.std_logic_unsigned.all;
+
+    entity GB is
+
+        port( a: in std_logic_vector(3 downto 0);
+              b: out std_logic_vector(3 downto 0)
+            );
+
+        end GB;
+
+        architecture bhv of GB is
+            begin
+                process(a)
+                    begin
+                        b(0)<=a(0);
+                        b(1)<=a(0) xor a(1);
+                        b(2)<=a(0) xor a(1) xor a(2);
+                        b(3)<=a(0) xor a(1) xor a(2) xor a(3);
+                    end process;
+                end bhv;
+3)	BCD TO EXCESS 3
+Library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity BCD2EX3 is
+
+Port ( I : in STD_LOGIC_VECTOR(3 downto 0);
+          Y : out STD_LOGIC_VECTOR(3 downto 0)
+        );
+
+end BCD2EX3;
+
+architecture Behavioral of BCD2EX3 is
+
+signal w, x, z : STD_LOGIC;
+
+begin
+	w <= not I(1);
+	 x <= not I(2);
+	 z <= not I(3);
+	Y(0) <= (I(0) or (I(1) and I(2)) or (I(1) and I(3)));
+	Y(1) <= ((I(1) and x and z) or (w and I(3)) or (w and I(2)));
+	Y(2) <= ((x and z) or (I(2) and I(3)));
+	Y(3) <= not z;
+end Behavioral;
+4)	EXCESS 3 TO BCD
+library ieee;
+use ieee.std_logic_1164.all;
+    use ieee.std_logic_arith.all;
+    use ieee.std_logic_unsigned.all;
+
+    entity e3_bcd is
+
+        port( a: in std_logic_vector(3 downto 0);
+              b: out std_logic_vector(3 downto 0)
+            );
+
+        end e3_bcd;
+
+        architecture bhv of e3_bcd is
+            begin
+                process(a) is
+                    begin
+                        b(0)<=((a(0) and a(1)) or (a(0) and a(2) and a(3)));
+                        b(1)<=((not a(1)) and (not a(2))) or (a(1) and a(2) and a(3)) or ((not a(1) and (not a(3))));
+                        b(2)<=(a(2) xor a(3));
+                        b(3)<=(not a(3));
+                    end process;
+                end bhv;
+
+                library ieee;
+                    use ieee.std_logic_1164.all;
+                    use ieee.std_logic_unsigned.all;
+
+                    entity bth is
+                        port(m: in std_logic_vector(4 downto 1);
+                            mc: in std_logic_vector(4 downto 1);
+                            o: out std_logic_vector(8 downto 1)
+                            );
+                        end bth;
+                        architecture arc of bth is
+                            begin
+                                process(m,mc)
+                                    variable ea: std_logic_vector(4 downto 1);
+                                    variable b: std_logic_vector(4 downto 1);
+                                    variable q: std_logic_vector(4 downto 1);
+                                    variable qn: std_logic_vector(2 downto 1);
+                                    begin
+                                        ea:="0000";
+                                        b:=m;
+                                        q:=mc;
+                                        qn:=q(1)&'0';
+                                        for i in 4 downto 1 loop
+                                        if qn ="01" then
+                                        ea:=ea (4 downto 1) + b (4 downto 1);
+                                        q:= ea (1) & q (4 downto 2);
+                                        ea:=ea(4) & ea(4 downto 2);
+                                        qn:= q(1)&qn(2);
+                                        elsif qn="10" then
+                                         ea:=ea (4 downto 1) + not(b (4 downto 1))+1;
+                                        q:= ea (1) & q (4 downto 2);
+                                        ea:=ea(4) & ea(4 downto 2);
+                                        qn:= q(1)&qn(2);
+                                        else
+                                        q:= ea (1) & q (4 downto 2);
+                                        ea:=ea(4) & ea(4 downto 2);
+                                        qn:= q(1)&qn(2);
+                                    end if;
+                                end loop;
+                                o<=ea(4 downto 1) & q(4 downto 1);
+                            end process;
+                        end arc;
+
+--------------booth--------------
+
+library ieee;
+    use ieee.std_logic_1164.all;
+    use ieee.std_logic_unsigned.all;
+
+    entity bth is
+        port(m: in std_logic_vector(4 downto 1);
+            mc: in std_logic_vector(4 downto 1);
+            o: out std_logic_vector(8 downto 1)
+            );
+        end bth;
+        architecture arc of bth is
+            begin
+                process(m,mc)
+                    variable ea: std_logic_vector(4 downto 1);
+                    variable b: std_logic_vector(4 downto 1);
+                    variable q: std_logic_vector(4 downto 1);
+                    variable qn: std_logic_vector(2 downto 1);
+                    begin
+                        ea:="0000";
+                        b:=m;
+                        q:=mc;
+                        qn:=q(1)&'0';
+                        for i in 4 downto 1 loop
+                        if qn ="01" then
+                        ea:=ea (4 downto 1) + b (4 downto 1);
+                        q:= ea (1) & q (4 downto 2);
+                        ea:=ea(4) & ea(4 downto 2);
+                        qn:= q(1)&qn(2);
+                        elsif qn="10" then
+                         ea:=ea (4 downto 1) + not(b (4 downto 1))+1;
+                        q:= ea (1) & q (4 downto 2);
+                        ea:=ea(4) & ea(4 downto 2);
+                        qn:= q(1)&qn(2);
+                        else
+                        q:= ea (1) & q (4 downto 2);
+                        ea:=ea(4) & ea(4 downto 2);
+                        qn:= q(1)&qn(2);
+                    end if;
+                end loop;
+                o<=ea(4 downto 1) & q(4 downto 1);
+            end process;
+        end arc;
+
+--------------Comparatror--------------
+
+LIBRARY IEEE;
+
+    use ieee.std_logic_1164.all;
+
+    entity comprator is
+        port(
+            a,b : in std_logic_vector(3 downto 0);
+            alb,agb,aeb : out std_logic
+            );
+
+        end comprator;
+
+        architecture bhv of comprator is
+            begin
+                process(a,b) is
+                    begin
+
+                        if(a=b)then
+                            alb <= '0';
+                            agb <= '0';
+                            aeb <= '1';
+
+                            elsif (a<b)then
+                            alb <= '1';
+                            agb <= '0';
+                            aeb <= '0';
+
+                            elsif(a>b)then
+                            alb <= '0';
+                            agb <= '1';
+                            aeb <= '0';
+
+
+                        end if;
+
+                    end process;
+
+                end bhv;
+
+
+-------------mod4------------------
+
+Mod counter
+library ieee;
+
+    use ieee.std_logic_1164.all;
+    use ieee.std_logic_unsigned.all;
+    use ieee.std_logic_arith.all;
+
+    entity mod4 is
+
+        port
+            (
+            clk : in std_logic;
+            count : out std_logic_vector(1 downto 0)
+            );
+        end mod4;
+
+        architecture arc of mod4 is
+            --signal tmp: std_logic_vector(3 downto 0);
+            begin
+
+                process(clk)
+
+                    variable temp : integer range 0 to 4;
+                    begin
+                        if(clk'event and clk ='1') then
+                            temp := temp + 1;
+                            if(temp =4) then
+                                temp := 0;
+
+                        --if(CLR='1') THEN
+                          --  tmp<="0000";
+
+                            --elsif(clock'event and clock ='1') then
+
+                              --  tmp <= tmp + 1;
+
+                            end if;
+                        end if;
+
+                         count <= conv_std_logic_vector(temp,2);
+
+                         end process;
+
+
+                        -- Q <= tmp;
+
+                     end arc;
+
+----------nonrestore-----------
+
+library ieee;
+    use ieee.std_logic_1164.all;
+    use ieee.std_logic_unsigned.all;
+
+entity non_restoring is
+    port
+        (
+        q:in std_logic_vector(4 downto 1);
+        m:in std_logic_vector(4 downto 1);
+        r:out std_logic_vector(4 downto 1);
+        q0:out std_logic_vector(4 downto 1)
+        );
+    end non_restoring;
+    architecture arc of non_restoring is
+
+        begin
+            process(q,m)
+                variable a:std_logic_vector(4 downto 1);
+                variable qv:std_logic_vector(4 downto 1);
+                variable mv:std_logic_vector(4 downto 1);
+                begin
+                    a:="0000";
+                    qv:=q;
+                    mv:=m;
+                    for i in 4 downto 1 loop
+                    if(a(4)='0') then
+                        a(4 downto 2):=a(3 downto 1);
+                        a(1):=qv(4);
+                        qv(4 downto 2):=qv(3 downto 1);
+                        a(4 downto 1):=a(4 downto 1)+(not mv(4 downto 1)+1);
+
+                        elsif(a(4)='1') then
+                            a(4 downto 2):=a(3 downto 1);
+                        a(1):=qv(4);
+                        qv(4 downto 2):=qv(3 downto 1);
+                        a(4 downto 1):=a(4 downto 1)+ mv(4 downto 1);
+                    end if;
+                    if(a(4)='0') then
+                        qv(1):='1';
+                        elsif(a(4)='1') then
+                            qv(1):='0';
+                        end if;
+                    end loop;
+                    if(a(4)='1') then
+                        a(4 downto 1):=a(4 downto 1)+ mv(4 downto 1);
+                    end if;
+                    q0<=qv;
+                    r<=a;
+                end process;
+            end arc;
+
+
+------------not----------
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+
+entity notGate is
+   port( inPort  : in std_logic;
+         outPort : out std_logic);
+end notGate;
+
+
+architecture func of notGate is
+begin
+   outPort <= not inPort;
+end func;
+
+
+--------priority encoder----------
+
+library ieee;
+use ieee.std_logic_1164.all;
+entity priorityencoder is
+port(
+d0,d1,d2,d3: in bit;
+y1,y2,v: out bit);
+end priorityencoder;
+
+architecture bhv of priorityencoder is
+begin
+process(d0,d1,d2,d3) is
+begin
+if(d0='0' and d1='0' and d2='0' and d3='0') then
+
+    v<='0';
+    elsif (d0='1' and d1='0' and d2='0' and d3='0') then
+    y1<='0';
+    y2<='0';
+    v<='1';
+    elsif (  d1='1' and d2='0' and d3='0') then
+    y1<='0';
+    y2<='1';
+    v<='1';
+    elsif(    d2='1' and d3='0') then
+    y1<='1';
+    y2<='0';
+    v<='1';
+    else
+    y1<='1';
+    y2<='1';
+    v<='1';
+end if;
+
+end process;
+
+end bhv;
+----------  generator:-------
+-
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity paritygenerator is
+port(
+A : in std_logic;
+B : in std_logic;
+C : in std_logic;
+O : out std_logic);
+
+end paritygenerator;
+
+architecture parity of paritygenerator is
+signal r,s : std_logic;
+begin
+r<=(A xor B);
+s<=(B xor r);
+O<=(s xor C);
+end parity;
+
+---checker---
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity checker is
+port( a : in std_logic_vector(3 downto 0);
+even : out std_logic;
+odd : out std_logic );
+end checker;
+
+architecture bhv of checker is
+signal i: std_logic;
+begin
+i<=(a(0) xor a(1) xor a(2) xor a(3));
+even<=i;
+odd<= not i;
+end bhv;
+
+-----parallel adder------------
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity pa1 is
+    Port ( a : in std_logic_vector(3 downto 0);
+           b : in std_logic_vector(3 downto 0);
+           s : out std_logic_vector(3 downto 0);
+           c : out std_logic;
+           cin : in std_logic);
+end pa1;
+
+architecture pa11 of pa1 is
+
+begin
+process(a,b,cin)
+variable u:std_logic;
+begin
+u:=cin;
+for i in 0 to 3 loop
+s(i)<=a(i) xor b(i) xor u;
+u:=(a(i) and b(i))or(b(i) and u) or(u and a(i));
+end loop;
+c<=u;
+end process;
+
+end pa11;
+
+------------pipo--------
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity pipo is
+ port(
+ clk : in std_logic;
+ D: in std_logic_vector(3 downto 0);
+ Q: out std_logic_vector(3 downto 0)
+ );
+end pipo;
+
+architecture arch of pipo is
+
+begin
+
+ process (clk)
+ begin
+ if (CLK'event and CLK='1') then
+ Q <= D;
+ end if;
+ end process;
+
+end arch;
+
+----------piso------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity parallel_in_serial_out is
+     port(
+         clk : in STD_LOGIC;
+         reset : in STD_LOGIC;
+         load : in STD_LOGIC;
+         din : in STD_LOGIC_VECTOR(3 downto 0);
+         dout : out STD_LOGIC
+         );
+end parallel_in_serial_out;
+
+
+architecture piso_arc of parallel_in_serial_out is
+begin
+
+    piso : process (clk,reset,load,din) is
+    variable temp : std_logic_vector (din'range);
+    begin
+        if (reset='1') then
+            temp := (others=>'0');
+        elsif (load='1') then
+            temp := din ;
+        elsif (rising_edge (clk)) then
+            dout <= temp(3);
+            temp := temp(2 downto 0) & '0';
+        end if;
+    end process piso;
+
+end piso_arc;
+
+
+-----------------8-BIT RAM(R/W)-----
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity RAM is
+port(address: in std_logic_vector(0 to 7);
+     datain: in std_logic_vector(7 downto 0);
+     dataout: out std_logic_vector(7 downto 0);
+     WE, CS, OE: in std_logic);
+end entity RAM;
+
+architecture behavior6 of RAM is
+type RAM_type is array (0 to 2**16) of std_logic_vector(7 downto 0);
+signal RAM1: RAM_type;
+
+begin
+process (address, CS, WE, OE)
+begin
+dataout <= (others => 'Z'); --chip is not selected (this is the first row of the T.T)
+if (CS = '0')
+then
+
+if WE= '0' then --we want to write
+RAM1(to_integer(unsigned(address))) <= datain;
+end if;
+
+if WE= '1' and OE= '0'
+then--we want to read
+dataout <= RAM1(to_integer(unsigned(address)));
+else
+dataout <= (others => 'Z');
+end if;
+end if;
+end process;
+end behavior6;
+
+--------res division----
+
+library ieee;
+
+    use ieee.std_logic_1164.all;
+    use ieee.std_logic_unsigned.all;
+    entity rd is
+        port
+            (
+            q : in std_logic_vector(4 downto 1);
+            m : in std_logic_vector(4 downto 1);
+            r : out std_logic_vector(4 downto 1);
+            q0 : out std_logic_vector(4 downto 1)
+            );
+        end rd;
+        architecture arc of rd is
+
+            begin
+
+                process(q,m)
+
+                    variable a: std_logic_vector(4 downto 1);
+                    variable qv: std_logic_vector(4 downto 1);
+                    variable mv: std_logic_vector(4 downto 1);
+
+                    begin
+
+                        qv:=q;
+                        mv:= m;
+                        a:="0000";
+
+                        for i in 4 downto 1 loop
+                        a(4 downto 2) :=a(3 downto 1);
+                        a(1):=qv(4);
+                        qv(4 downto 2):=qv(3 downto 1);
+                        a(4 downto 1):=a(4 downto 1) + (not mv(4 downto 1))+1;
+                        if (a(4)='0') then
+                        qv(1):='1';
+                        elsif (a(4)='1') then
+                        qv(1):='0';
+                        a(4 downto 1) := a(4 downto 1) + mv(4 downto 1);
+                    end if;
+
+                end loop;
+
+                q0<=qv;
+                r<=a;
+
+
+             end process;
+
+         end arc;
+
+-----ripple-----
+
+CLA  ADDER:
+--libraries to be used are specified here
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+--entity declaration with port definitions
+entity rc_adder is
+port(    num1 : in std_logic_vector(3 downto 0);  --4 bit input 1
+            num2 :      in std_logic_vector(3 downto 0);  -- 4 bit input 2
+            sum : out std_logic_vector(3 downto 0);   -- 4 bit sum
+           carry :  out std_logic   -- carry out.
+);
+end rc_adder;
+
+
+--architecture of entity
+architecture Behavioral of rc_adder is
+
+--temporary signal declarations(for intermediate carry's).
+signal c0,c1,c2,c3 : std_logic := '0';
+begin
+
+--first full adder
+sum(0) <= num1(0) xor num2(0);  --sum calculation
+c0 <= num1(0) and num2(0);          --carry calculation
+--second full adder
+sum(1) <= num1(1) xor num2(1) xor c0;
+c1 <= (num1(1) and num2(1)) or (num1(1) and c0) or (num2(1) and c0);
+--third full adder
+sum(2) <= num1(2) xor num2(2) xor c1;
+c2 <= (num1(2) and num2(2)) or (num1(2) and c1) or (num2(2) and c1);
+--fourth(final) full adder
+sum(3) <= num1(3) xor num2(3) xor c2;
+c3 <= (num1(3) and num2(3)) or (num1(3) and c2) or (num2(3) and c2);
+--final carry assignment
+carry <= c3;
+
+end Behavioral;
+
+
+--shift register----
+
+
+library ieee;
+    -- package dec
+       use IEEE.STD_LOGIC_1164.ALL;
+       use ieee.NUMERIC_STD.all;
+       use ieee.std_logic_unsigned.all;
+
+    --entity declaration
+    --aludesign is the entity name
+        entity shifter is
+        port
+            (
+            a: in std_logic_vector(3 downto 0);-- a and b are inputs
+            op:in std_logic_vector(2 downto 0);  -- op stands for operation eg. addition
+            zero:out std_logic;                  -- flag bit to set or reset the temp variable
+            f:out std_logic_vector(3 downto 0)   -- output variable
+            );
+        end shifter;
+    --architecture dec
+    --bhv is our architecture name for the entity
+        architecture bhv of shifter is
+        --Begining the architecture body
+        begin
+            --declaring the process
+                process(op,a)
+                --temporary variable declaration
+                variable temp: std_logic_vector(3 downto 0);
+                --begining the case block
+                begin
+                    case op is
+                            when "000" =>
+                            temp := std_logic_vector(unsigned(a) sll 1);
+                             when "001" =>
+                            temp :=std_logic_vector(unsigned(a) srl 1);
+                             when "010" =>
+                            temp :=std_logic_vector(shift_left(signed(a),1));
+                             when "011" =>
+                            temp :=std_logic_vector(shift_right(signed(a),1));
+                            when "100" =>
+                            temp:=std_logic_vector(unsigned(a) rol 1);
+                            when "101" =>
+                            temp:=std_logic_vector(unsigned(a) ror 1);
+                            when others =>
+                            temp:= "0000";
+                             end case;
+                        --end case block
+                        --start of if block
+                        if temp="0000" then
+                            zero<= '1';--reset mode
+                            else
+                            zero<='0';--set mode
+                        end if;
+                        f<=temp; --transfering the output to f channel
+                    end process;
+
+                end bhv;
+
+
+----------sipo-----------
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity sipo is
+ port(
+ clk, clear : in std_logic;
+ Input_Data: in std_logic;
+ Q: out std_logic_vector(3 downto 0) );
+end sipo;
+
+architecture arch of sipo is
+
+begin
+
+ process (clk)
+ begin
+ if clear = '1' then
+ Q <= "0000";
+ elsif (CLK'event and CLK='1') then
+ Q(3 downto 1) <= Q(2 downto 0);
+ Q(0) <= Input_Data;
+ end if;
+ end process;
+end arch;
+
+
+-siso-------
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity siso_behavior is
+     port(
+         din : in STD_LOGIC;
+         clk : in STD_LOGIC;
+         reset : in STD_LOGIC;
+         dout : out STD_LOGIC
+         );
+end siso_behavior;
+
+
+architecture siso_behavior_arc of siso_behavior is
+begin
+
+    siso : process (clk,din,reset) is
+    variable s : std_logic_vector(3 downto 0) := "0000" ;
+    begin
+        if (reset='1') then
+            s := "0000";
+        elsif (rising_edge (clk)) then
+            s := (din & s(3 downto 1));
+            dout <= s(0);
+        end if;
+    end process siso;
+
+end siso_behavior_arc;
+
+
+-------up down counter ----
+
+library ieee;
+
+    use ieee.std_logic_1164.all;
+    use ieee.std_logic_unsigned.all;
+    entity counter3 is
+
+        port
+            (
+            clock, CLR, up_down : in std_logic;
+            Q : out std_logic_vector(3 downto 0)
+            );
+        end counter3;
+
+        architecture arc of counter3 is
+            signal tmp: std_logic_vector(3 downto 0);
+            begin
+                process(clock, CLR)
+                    begin
+
+                        if(CLR='1') THEN
+                            tmp<="0000";
+
+                            elsif(clock'event and clock ='1') then
+
+                                if(up_down='1') then
+                                    tmp <= tmp + 1;
+
+                                    else
+                                    tmp <= tmp - 1;
+
+                            end if;
+                        end if;
+
+                         end process;
+
+                         Q <= tmp;
+
+                     end arc;
+
+---------------up counter-----------
+
+Code :
+library ieee;
+
+    use ieee.std_logic_1164.all;
+    use ieee.std_logic_unsigned.all;
+    entity counter1 is
+
+        port
+            (
+            clock, CLR : in std_logic;
+            Q : out std_logic_vector(3 downto 0)
+            );
+        end counter1;
+
+        architecture arc of counter1 is
+            signal tmp: std_logic_vector(3 downto 0);
+            begin
+                process(clock, CLR)
+                    begin
+
+                        if(CLR='1') THEN
+                            tmp<="0000";
+
+                            elsif(clock'event and clock ='1') then
+
+                                tmp <= tmp + 1;
+
+                            end if;
+
+                         end process;
+
+                         Q <= tmp;
+
+                     end arc;
+
+
+------------xnor------------
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+entity xnor1 is
+    Port ( a : in std_logic;
+           b : in std_logic;
+           y : out std_logic);
+end xnor1;
+architecture xnor11 of xnor1 is
+begin
+y<=not (a xor b);
+end xnor11;
+
+
+----------flip flop-------
+SR FLIP FLOP
+library ieee;
+use ieee. std_logic_1164.all;
+use ieee. std_logic_arith.all;
+use ieee. std_logic_unsigned.all;
+
+entity SR_FF is
+PORT( S,R,CLOCK: in std_logic;
+Q, QBAR: out std_logic);
+end SR_FF;
+
+architecture behavioral of SR_FF is
+begin
+PROCESS(CLOCK)
+variable tmp: std_logic;
+begin
+if(CLOCK='1' and CLOCK'EVENT) then
+if(S='0' and R='0')then
+tmp:=tmp;
+elsif(S='1' and R='1')then
+tmp:='Z';
+elsif(S='0' and R='1')then
+tmp:='0';
+else
+tmp:='1';
+end if;
+end if;
+Q <= tmp;
+QBAR <= not tmp;
+end PROCESS;
+end behavioral;
+
+VHDL Code for D FlipFlop
+
+library ieee;
+use ieee. std_logic_1164.all;
+use ieee. std_logic_arith.all;
+use ieee. std_logic_unsigned.all;
+
+entity D_FF is
+PORT( D,CLOCK: in std_logic;
+Q: out std_logic);
+end D_FF;
+
+architecture behavioral of D_FF is
+begin
+process(CLOCK)
+begin
+if(CLOCK='1' and CLOCK'EVENT) then
+Q <= D;
+end if;
+end process;
+end behavioral;
+VHDL Code for JK Flip Flop
+
+library ieee;
+use ieee. std_logic_1164.all;
+use ieee. std_logic_arith.all;
+use ieee. std_logic_unsigned.all;
+
+entity JK_FF is
+PORT( J,K,CLOCK: in std_logic;
+Q, QB: out std_logic);
+end JK_FF;
+Architecture behavioral of JK_FF is
+begin
+PROCESS(CLOCK)
+variable TMP: std_logic;
+begin
+if(CLOCK='1' and CLOCK'EVENT) then
+if(J='0' and K='0')then
+TMP:=TMP;
+elsif(J='1' and K='1')then
+TMP:= not TMP;
+elsif(J='0' and K='1')then
+TMP:='0';
+else
+TMP:='1';
+end if;
+end if;
+Q<=TMP;
+Q <=not TMP;
+end PROCESS;
+end behavioral;
+VHDL Code for T FlipFlop
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity T_FF is
+port( T: in std_logic;
+Clock: in std_logic;
+Q: out std_logic);
+end T_FF;
+architecture Behavioral of T_FF is
+signal tmp: std_logic;
+begin
+process (Clock)
+begin
+if Clock'event and Clock='1' then
+
+if T='0' then
+tmp <= tmp;
+elsif T='1' then
+tmp <= not (tmp);
+end if;
+end if;
+end process;
+Q <= tmp;
+end Behavioral;

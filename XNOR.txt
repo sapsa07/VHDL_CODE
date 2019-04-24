@@ -1,0 +1,11 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+entity xnor1 is
+    Port ( a : in std_logic;
+           b : in std_logic;
+           y : out std_logic);
+end xnor1;
+architecture xnor11 of xnor1 is
+begin
+y<=not (a xor b);
+end xnor11;

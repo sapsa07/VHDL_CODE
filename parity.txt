@@ -1,0 +1,81 @@
+                        priority encoder:
+
+ 
+
+library ieee;
+    use ieee.std_logic_1164.all;
+    entity priorityencoder is
+        port(
+            d0,d1,d2,d3: in bit;
+            y1,y2,v: out bit);
+        end priorityencoder;
+        
+         architecture bhv of priorityencoder is
+            begin
+                process(d0,d1,d2,d3) is
+                    begin
+                        if(d0='0' and d1='0' and d2='0' and d3='0') then
+                            
+                            v<='0';
+                            elsif (d0='1' and d1='0' and d2='0' and d3='0') then
+                            y1<='0';
+                            y2<='0';
+                            v<='1';
+                            elsif (  d1='1' and d2='0' and d3='0') then
+                            y1<='0';
+                            y2<='1';
+                            v<='1';
+                            elsif(    d2='1' and d3='0') then
+                            y1<='1';
+                            y2<='0';
+                            v<='1';
+                            else
+                            y1<='1';
+                            y2<='1';
+                            v<='1';
+                    end if;
+                        
+                    end process;
+                    
+                end bhv;
+                      ----------  generator:-------
+ -
+library ieee;
+    use ieee.std_logic_1164.all;
+    
+    entity paritygenerator is
+        port(
+            A : in std_logic;
+            B : in std_logic;
+            C : in std_logic;
+            O : out std_logic);
+            
+        end paritygenerator;
+        
+        architecture parity of paritygenerator is
+            signal r,s : std_logic;
+            begin
+                r<=(A xor B);
+                s<=(B xor r);
+                O<=(s xor C);
+            end parity;
+
+---checker---
+
+      library ieee;
+use ieee.std_logic_1164.all;
+
+entity checker is
+    port( a : in std_logic_vector(3 downto 0);
+        even : out std_logic;
+        odd : out std_logic );
+    end checker;
+    
+    architecture bhv of checker is
+        signal i: std_logic;
+        begin
+            i<=(a(0) xor a(1) xor a(2) xor a(3));
+            even<=i;
+            odd<= not i;
+        end bhv;
+              

@@ -1,0 +1,71 @@
+--ha--
+
+library ieee;
+    use ieee.std_logic_1164.all;
+    entity ha is
+        port(
+             a,b: in bit;
+             s,c: out bit);
+        end ha;
+        architecture bhv of ha is begin
+        p1:process(a,b)
+  begin
+      if a & b ="00" then
+        s<= '0';
+        c<= '0';
+        elsif a&b="01" or a & b ="10" then
+        s<= '1';
+        c<= '0';
+        else
+         s<= '0';
+        c<= '1';
+    end if;
+end process;
+    end bhv;
+
+-- fa--
+
+library ieee;
+    
+    use ieee.std_logic_1164.all;
+    
+    entity fulladder1 is
+        
+        port
+            
+            (a, b , C : in bit;
+            
+             s, ca : out bit
+            );
+            
+        end fulladder1;
+        
+        architecture behavioral of fulladder1 is
+            
+                begin
+                    
+                p1: process(a,b,c)
+                
+                begin
+                    
+    if a & b & c ="000" then 
+    s <= '0';
+    ca <= '0';
+    
+    elsif a & b & c = "001" or a & b & c ="011" or a & b & c ="100" then 
+    s <= '1';
+    ca <= '0';
+    
+    elsif a & b & c = "111" then
+    s <= '1';
+    ca <= '1';
+    
+    else
+        s <= '0';
+        ca <='1';   
+    
+end if;
+
+end process;
+
+end behavioral;

@@ -1,0 +1,41 @@
+comparator:
+ 
+
+LIBRARY IEEE;
+    
+    use ieee.std_logic_1164.all;
+    
+    entity comprator is
+        port(
+            a,b : in std_logic_vector(3 downto 0);
+            alb,agb,aeb : out std_logic 
+            );
+       
+        end comprator;
+        
+        architecture bhv of comprator is
+            begin
+                process(a,b) is
+                    begin
+                        
+                        if(a=b)then
+                            alb <= '0';
+                            agb <= '0';
+                            aeb <= '1';
+                            
+                            elsif (a<b)then
+                            alb <= '1';
+                            agb <= '0';
+                            aeb <= '0';  
+                           
+                            elsif(a>b)then
+                            alb <= '0';
+                            agb <= '1';
+                            aeb <= '0';
+                       
+             
+                        end if;
+                        
+                    end process;
+                    
+                end bhv;

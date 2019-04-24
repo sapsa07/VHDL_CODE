@@ -1,0 +1,86 @@
+1) 8 BIT ADDITION
+Code:
+library ieee;
+
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+    entity BitAdder is
+        generic(N: natural := 2);
+        port
+            (
+            X:in std_logic_vector(7 downto 0);
+            Y:in std_logic_vector(7 downto 0);
+            SUM: out std_logic_vector(7 downto 0);
+            CARRY: out std_logic
+            );
+        end BitAdder;
+        architecture Behavioral of BitAdder is
+            Signal result:std_logic_vector(8 downto 0);
+            begin
+                result<= ('0' & X)+('0' & Y);
+                SUM<= result(7 downto 0);
+                CARRY<=result(8);
+            end behavioral;
+    OUTPUT:
+ 
+2)8 bit Substraction
+(i)Simple
+library ieee;
+
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+    
+    entity fs is
+        generic(n: natural :=2);
+        port
+            (
+            X: in std_logic_vector(7 downto 0);
+            Y: in std_logic_vector(7 downto 0);
+            difference: out std_logic_vector(7 downto 0);
+            borrow:out std_logic
+            );
+    end fs;
+    
+    architecture data of fs is
+        signal result: std_logic_vector(8 downto 0);
+        begin
+            result <= ('0' & X)- ('0' &  Y);
+            difference<=result(7 downto 0);
+            borrow<=result(8);
+    end data;
+OUTPUT:
+ 
+
+(ii) using 2's complement
+library ieee;
+
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+    
+    entity fs is
+        port
+            (
+            X: in std_logic_vector(7 downto 0);
+            Y: in std_logic_vector(7 downto 0);
+            difference: out std_logic_vector(7 downto 0);
+            borrow:out std_logic
+            );
+    end fs;
+    
+    architecture bev of fs is
+        signal result: std_logic_vector(8 downto 0);
+           
+                begin
+               
+                result <= ('0' & X) + (not('0' & Y) + 1);
+              
+              difference<=result(7 downto 0);
+            
+            borrow<=result(8);
+            
+    end bev;
+

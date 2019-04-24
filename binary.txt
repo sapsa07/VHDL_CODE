@@ -1,0 +1,102 @@
+1)	 BINARY TO GREY:
+
+CODE:
+library ieee;
+    
+    use ieee.std_logic_1164.all;
+    use ieee.std_logic_arith.all;
+    use ieee.std_logic_unsigned.all;
+    
+    entity BG is
+        
+        port( a: in std_logic_vector(3 downto 0);
+              b: out std_logic_vector(3 downto 0)
+            );
+            
+        end BG;
+        
+        architecture bhv of BG is
+            begin
+                process(a)
+                    begin
+                        b(0)<=a(0);
+                        b(1)<=a(0) xor a(1);
+                        b(2)<=a(2) xor a(1);
+                        b(3)<=a(3) xor a(2);
+                    end process;
+                end bhv;
+              
+2)	GREY TO BINARY
+library ieee;
+use ieee.std_logic_1164.all;
+    use ieee.std_logic_arith.all;
+    use ieee.std_logic_unsigned.all;
+    
+    entity GB is
+        
+        port( a: in std_logic_vector(3 downto 0);
+              b: out std_logic_vector(3 downto 0)
+            );
+            
+        end GB;
+        
+        architecture bhv of GB is
+            begin
+                process(a)
+                    begin
+                        b(0)<=a(0);
+                        b(1)<=a(0) xor a(1);
+                        b(2)<=a(0) xor a(1) xor a(2);
+                        b(3)<=a(0) xor a(1) xor a(2) xor a(3);
+                    end process;
+                end bhv;
+3)	BCD TO EXCESS 3
+Library IEEE;
+use IEEE.STD_LOGIC_1164.ALL; 
+
+entity BCD2EX3 is
+    
+Port ( I : in STD_LOGIC_VECTOR(3 downto 0);
+          Y : out STD_LOGIC_VECTOR(3 downto 0)
+        );
+        
+end BCD2EX3;
+
+architecture Behavioral of BCD2EX3 is
+    
+signal w, x, z : STD_LOGIC;
+
+begin
+	w <= not I(1);
+	 x <= not I(2);
+	 z <= not I(3); 
+	Y(0) <= (I(0) or (I(1) and I(2)) or (I(1) and I(3)));
+	Y(1) <= ((I(1) and x and z) or (w and I(3)) or (w and I(2)));
+	Y(2) <= ((x and z) or (I(2) and I(3)));
+	Y(3) <= not z;
+end Behavioral;
+4)	EXCESS 3 TO BCD 
+library ieee;
+use ieee.std_logic_1164.all;
+    use ieee.std_logic_arith.all;
+    use ieee.std_logic_unsigned.all;
+    
+    entity e3_bcd is
+        
+        port( a: in std_logic_vector(3 downto 0);
+              b: out std_logic_vector(3 downto 0)
+            );
+            
+        end e3_bcd;
+        
+        architecture bhv of e3_bcd is
+            begin
+                process(a) is
+                    begin
+                        b(0)<=((a(0) and a(1)) or (a(0) and a(2) and a(3)));
+                        b(1)<=((not a(1)) and (not a(2))) or (a(1) and a(2) and a(3)) or ((not a(1) and (not a(3)))); 
+                        b(2)<=(a(2) xor a(3));
+                        b(3)<=(not a(3));
+                    end process;
+                end bhv;
+            
